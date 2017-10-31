@@ -1,0 +1,11 @@
+{
+  "name": "Fractals",
+  "version": "0.1.0",
+  "main": "main.js",
+  "devDependencies": {
+    "electron": "^1.7.9"
+  },
+  "scripts": {
+    "start": "electron ."
+  }
+}
