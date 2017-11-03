@@ -51,7 +51,11 @@ function draw(maxIterations) {
   window.onload = function() {
     document.getElementById("render").onclick = function fun() {
       var maxIterations = parseInt(document.getElementById("iterations").value);
+      var t1 = Date.now();
       draw(maxIterations);
+      var t2 = Date.now();
+      var render_time = t2 - t1;
+      document.getElementById("render_time").innerText = `Time: ${render_time.toFixed(2)}ms`;
     }
   }
 })();
