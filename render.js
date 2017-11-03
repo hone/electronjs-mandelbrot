@@ -22,6 +22,22 @@ function checkIfBelongsToMandelbrotSet(x, y, maxIterations) {
   return 0; // Not in the set
 }
 
+function generate_mandelbrot(width, height, maxIterations, magnification, panX, panY) {
+  var image = new Float64Array(width * height);
+
+  for(var x=0; x < width; x++) {
+    for(var y=0; y < height; y++) {
+      var index = x * width + y;
+      var belongsToSet =
+        checkIfBelongsToMandelbrotSet(x/magnification - panX,
+            y/magnification - panY, maxIterations);
+      image[index] = belongsToSet;
+    }
+  }
+
+  return image;
+}
+
 function draw(maxIterations) {
   // Create Canvas
   var myCanvas = document.getElementById("screen");
@@ -31,11 +47,12 @@ function draw(maxIterations) {
   var magnificationFactor = 200;
   var panX = 2;
   var panY = 1.5;
+
+  var image = generate_mandelbrot(myCanvas.width, myCanvas.height, maxIterations, magnificationFactor, panX, panY);
   for(var x=0; x < myCanvas.width; x++) {
     for(var y=0; y < myCanvas.height; y++) {
-      var belongsToSet = 
-        checkIfBelongsToMandelbrotSet(x/magnificationFactor - panX, 
-            y/magnificationFactor - panY, maxIterations);
+      var index = x * myCanvas.width + y;
+      var belongsToSet = image[index];
       if(belongsToSet == 0) {
         ctx.fillStyle = '#000';
         ctx.fillRect(x,y, 1,1); // Draw a black pixel
