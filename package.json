@@ -3,9 +3,15 @@
   "version": "0.1.0",
   "main": "main.js",
   "devDependencies": {
-    "electron": "^1.7.9"
+    "electron": "^1.7.9",
+    "electron-build-env": "^0.2.0",
+    "neon-cli": "^0.1.20"
   },
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-build-env neon build neon-mandelbrot"
+  },
+  "dependencies": {
+    "neon-mandelbrot": "file:./../neon-mandelbrot/"
   }
 }
