@@ -42,7 +42,12 @@ function drawRust(maxIterations) {
   var myCanvas = document.getElementById("screen");
   var ctx = myCanvas.getContext("2d");
 
-  var image = new rust();
+  // Start drawing
+  var magnificationFactor = 200;
+  var panX = 2;
+  var panY = 1.5;
+
+  var image = new rust(myCanvas.width, myCanvas.height, maxIterations, magnificationFactor, panX, panY);
   for(var x=0; x < myCanvas.width; x++) {
     for(var y=0; y < myCanvas.height; y++) {
       var index = x * myCanvas.width + y;
@@ -51,7 +56,6 @@ function drawRust(maxIterations) {
         ctx.fillStyle = '#000';
         ctx.fillRect(x,y, 1,1); // Draw a black pixel
       } else {
-        //ctx.fillStyle = '#FFF';
         ctx.fillStyle = 'hsl(0, 100%, ' + belongsToSet + '%)';
         ctx.fillRect(x,y, 1,1); // Draw a colorful pixel
       }
