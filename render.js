@@ -1,31 +1,28 @@
 const rust = require('neon-mandelbrot')
 
-function checkIfBelongsToMandelbrotSet(x, y, maxIterations) {
-  var realComponentOfResult = x;
-  var imaginaryComponentOfResult = y;
+function checkIfBelongsToMandelbrotSet(c_re, c_im, maxIterations) {
+  var iteration = 0;
+  var x = 0.0;
+  var y = 0.0;
 
-  for(var i = 0; i < maxIterations; i++) {
+  while(iteration < maxIterations && x * x + y * y <= 2 * 2) {
     // Calculate the real and imaginary components of the result
     // separately
-    var tempRealComponent = realComponentOfResult * realComponentOfResult
-      - imaginaryComponentOfResult * imaginaryComponentOfResult
-      + x;
-
-    var tempImaginaryComponent = 2 * realComponentOfResult * imaginaryComponentOfResult
-      + y;
-
-    realComponentOfResult = tempRealComponent;
-    imaginaryComponentOfResult = tempImaginaryComponent;
-
-    if (realComponentOfResult * imaginaryComponentOfResult > 5)
-      return (i/maxIterations * 100); // In the Mandelbrot set
+    var x_new = (x * x - y * y) + c_re;
+    y = 2 * x * y + c_im;
+    x = x_new;
+    iteration++;
   }
 
-  return 0; // Not in the set
+  if(iteration < maxIterations) {
+    return iteration/maxIterations * 100; // In the Mandelbrot set
+  } else {
+    return 0; // Not in the set
+  }
 }
 
 function generate_mandelbrot(width, height, maxIterations, magnification, panX, panY) {
-  var image = new Float64Array(width * height);
+  var image = new Uint8Array(width * height);
 
   for(var x=0; x < width; x++) {
     for(var y=0; y < height; y++) {
@@ -45,7 +42,7 @@ function drawRust(maxIterations) {
   var myCanvas = document.getElementById("screen");
   var ctx = myCanvas.getContext("2d");
 
-  var image = new Uint8Array(rust.rust_mandelbrot());
+  var image = new rust();
   for(var x=0; x < myCanvas.width; x++) {
     for(var y=0; y < myCanvas.height; y++) {
       var index = x * myCanvas.width + y;
@@ -54,8 +51,8 @@ function drawRust(maxIterations) {
         ctx.fillStyle = '#000';
         ctx.fillRect(x,y, 1,1); // Draw a black pixel
       } else {
-        ctx.fillStyle = '#FFF';
-        //ctx.fillStyle = 'hsl(0, 100%, ' + belongsToSet + '%)';
+        //ctx.fillStyle = '#FFF';
+        ctx.fillStyle = 'hsl(0, 100%, ' + belongsToSet + '%)';
         ctx.fillRect(x,y, 1,1); // Draw a colorful pixel
       }
     }
