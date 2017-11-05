@@ -815,8 +815,9 @@ neon-cli@^0.1.20:
     validate-npm-package-license "^3.0.1"
     validate-npm-package-name "^2.2.2"
 
-"neon-mandelbrot@file:../neon-mandelbrot":
+neon-mandelbrot@hone/neon-mandelbrot:
   version "0.1.0"
+  resolved "https://codeload.github.com/hone/neon-mandelbrot/tar.gz/b86cc32b7e71dda83a4b83731d441b5aac40b6e1"
   dependencies:
     neon-cli "^0.1.20"
 

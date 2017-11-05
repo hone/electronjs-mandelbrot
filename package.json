@@ -13,6 +13,6 @@
     "postinstall": "yarn run build"
   },
   "dependencies": {
-    "neon-mandelbrot": "file:./../neon-mandelbrot/"
+    "neon-mandelbrot": "hone/neon-mandelbrot"
   }
 }
