@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "electron .",
-    "build": "electron-build-env neon build neon-mandelbrot"
+    "build": "electron-build-env neon build neon-mandelbrot",
+    "postinstall": "yarn run build"
   },
   "dependencies": {
     "neon-mandelbrot": "file:./../neon-mandelbrot/"
