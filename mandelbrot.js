@@ -15,7 +15,7 @@ module.exports = {
       }
     }
 
-    return 0; // Not in the set
+    return 0.0; // Not in the set
   },
   generate: function(width, height, maxIterations, magnification, panX, panY) {
     var t1 = Date.now();
