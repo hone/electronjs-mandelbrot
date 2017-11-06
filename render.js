@@ -1,5 +1,7 @@
 const rust = require('neon-mandelbrot');
-const rust_parallel = {};
+const rust_parallel = {
+  generate: rust.generate_parallel
+}
 const js = require('mandelbrot');
 
 function draw(backend, maxIterations, magnificationFactor, panX, panY) {
