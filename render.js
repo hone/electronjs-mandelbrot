@@ -1,8 +1,6 @@
-const rust = require('neon-mandelbrot');
-const rust_parallel = {
-  generate: rust.generate_parallel
-};
-const js = require('./mandelbrot.js');
+const rust = {};
+const rust_parallel = {};
+const js = {};
 
 function draw(backend, maxIterations, magnificationFactor, panX, panY) {
   var myCanvas = document.getElementById("screen");
