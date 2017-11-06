@@ -1,4 +1,4 @@
-const rust = {};
+const rust = require('neon-mandelbrot');
 const rust_parallel = {};
 const js = require('mandelbrot');
 
