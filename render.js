@@ -1,6 +1,6 @@
 const rust = {};
 const rust_parallel = {};
-const js = {};
+const js = require('mandelbrot');
 
 function draw(backend, maxIterations, magnificationFactor, panX, panY) {
   var myCanvas = document.getElementById("screen");

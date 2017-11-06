@@ -9,5 +9,6 @@
     "start": "electron ."
   },
   "dependencies": {
+    "mandelbrot": "file:./../mandelbrot.js"
   }
 }
